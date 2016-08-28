@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   
   def create  # Runs with every click of "Create account" button
     @user = User.new(user_params)
-    if @user.save
+    if @user.save  # save to db
+      log_in @user  # log in freshly signed up user
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
